@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SQLiteDemo.Data;
-using SQLiteDemo.Model;
+using SharedLib.Data;
+using SharedLib.Model;
 
 namespace SQLiteDemo
 {
@@ -21,6 +21,8 @@ namespace SQLiteDemo
             rep.SaveCustomer(customer);
 
             Customer retrievedCustomer = rep.GetCustomer(customer.Id);
+
+            Console.WriteLine("retrieved customer: {0}, {1}, {2}, {3}",retrievedCustomer.Id, retrievedCustomer.FirstName, retrievedCustomer.LastName, retrievedCustomer.DateOfBirth);
         }
     }
 }
