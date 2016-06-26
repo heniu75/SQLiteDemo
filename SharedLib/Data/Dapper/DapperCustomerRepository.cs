@@ -1,11 +1,12 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Dapper;
 using SharedLib.Model;
 
-namespace SharedLib.Data
+namespace SharedLib.Data.Dapper
 {
-    public class SqLiteCustomerRepository : SqLiteBaseRepository, ICustomerRepository
+    public class DapperCustomerRepository : SqLiteBaseRepository, ICustomerRepository
     {
         public Customer GetCustomer(long id)
         {
@@ -14,10 +15,7 @@ namespace SharedLib.Data
             using (var cnn = SimpleDbConnection())
             {
                 cnn.Open();
-                Customer result = cnn.Query<Customer>(
-                    @"SELECT Id, FirstName, LastName, DateOfBirth
-                    FROM Customer
-                    WHERE Id = @id", new { id }).FirstOrDefault();
+                var result = cnn.Query<Customer>(@"SELECT * FROM Customer WHERE Id = @id", new { id }).FirstOrDefault();
                 return result;
             }
         }
@@ -40,19 +38,15 @@ namespace SharedLib.Data
             }
         }
 
-        private static void CreateDatabase()
+        public IEnumerable<Customer> GetAllCustomers()
         {
+            if (!File.Exists(DbFile)) return new List<Customer>();
+
             using (var cnn = SimpleDbConnection())
             {
                 cnn.Open();
-                cnn.Execute(
-                    @"create table Customer
-                      (
-                         ID                                  integer primary key AUTOINCREMENT,
-                         FirstName                           varchar(100) not null,
-                         LastName                            varchar(100) not null,
-                         DateOfBirth                         datetime not null
-                      )");
+                var result = cnn.Query<Customer>("select * from customer");
+                return result;
             }
         }
     }

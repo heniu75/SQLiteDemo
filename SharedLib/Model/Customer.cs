@@ -2,6 +2,9 @@
 
 namespace SharedLib.Model
 {
+    [PetaPoco.TableName("Customer")]
+
+    [PetaPoco.PrimaryKey("Id")]
     public class Customer
     {
         public long Id { get; set; }

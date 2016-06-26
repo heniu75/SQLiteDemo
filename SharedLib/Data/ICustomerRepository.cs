@@ -1,4 +1,5 @@
-﻿using SharedLib.Model;
+﻿using System.Collections.Generic;
+using SharedLib.Model;
 
 namespace SharedLib.Data
 {
@@ -6,5 +7,7 @@ namespace SharedLib.Data
     {
         Customer GetCustomer(long id);
         void SaveCustomer(Customer customer);
+
+        IEnumerable<Customer> GetAllCustomers();
     }
 }
