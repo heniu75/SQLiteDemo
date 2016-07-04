@@ -6,7 +6,7 @@ using SharedLib.Model;
 
 namespace SharedLib.Data.Dapper
 {
-    public class DapperCustomerRepository : SqLiteBaseRepository, ICustomerRepository
+    public class DapperCustomerRepository : SQLiteBaseRepository, ICustomerRepository
     {
         public Customer GetCustomer(long id)
         {

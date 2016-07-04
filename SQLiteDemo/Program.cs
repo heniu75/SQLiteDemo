@@ -12,6 +12,7 @@ namespace SQLiteDemo
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("DAPPER POCO DEMO WITH SQLLITE");
             ICustomerRepository rep = new DapperCustomerRepository();
             var customer = new Customer
                 {

@@ -3,9 +3,9 @@ using System.IO;
 using System.Linq;
 using SharedLib.Model;
 
-namespace SharedLib.Data.Peta
+namespace SharedLib.Data.Mass
 {
-    public class PetaPocoCustomerRepository : SQLiteBaseRepository, ICustomerRepository
+    public class MassiveCustomerRepository : SQLiteBaseRepository, ICustomerRepository
     {
         public Customer GetCustomer(long id)
         {

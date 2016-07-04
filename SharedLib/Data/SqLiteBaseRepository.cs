@@ -4,7 +4,7 @@ using Dapper;
 
 namespace SharedLib.Data
 {
-    public class SqLiteBaseRepository
+    public class SQLiteBaseRepository
     {
         public static string DbFile
         {
@@ -13,7 +13,8 @@ namespace SharedLib.Data
 
         public static SQLiteConnection SimpleDbConnection()
         {
-            return new SQLiteConnection("Data Source=" + DbFile);
+            var conn = "Data Source=" + DbFile;
+            return new SQLiteConnection(conn);
         }
 
         protected static void CreateDatabase()

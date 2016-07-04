@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SharedLib.Data;
-using SharedLib.Data.Dapper;
 using SharedLib.Data.Peta;
+using SharedLib.Data.Simple;
 using SharedLib.Model;
 
-namespace SQLiteDemo.UsingPetaPoco
+namespace SQLiteDemo.UsingSimpleData
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("PETA POCO DEMO WITH SQLLITE");
-            ICustomerRepository rep = new PetaPocoCustomerRepository();
+            Console.WriteLine("SIMPLE DATA DEMO WITH SQLLITE");
+            ICustomerRepository rep = new SimpleDataCustomerRepository();
             var customer = new Customer
             {
                 FirstName = "Sergey",
@@ -34,4 +34,3 @@ namespace SQLiteDemo.UsingPetaPoco
         }
     }
 }
-
