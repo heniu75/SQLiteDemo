@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using SharedLib.Data;
 using SharedLib.Data.Simple;
 using SharedLib.Model;
@@ -9,6 +10,9 @@ namespace SQLiteDemo.UsingSimpleData
     {
         static void Main(string[] args)
         {
+            var listener = new ExampleTraceListener();
+            Trace.Listeners.Add(listener);
+
             Console.WriteLine("SIMPLE DATA DEMO WITH SQLLITE");
             var rep = new SimpleDataCustomerRepository();
             var customer = new Customer
@@ -27,6 +31,17 @@ namespace SQLiteDemo.UsingSimpleData
                 Console.WriteLine("customer: {0}, {1}, {2}, {3}", cust.Id, cust.FirstName, cust.LastName, cust.DateOfBirth);
             var count = rep.GetCountBySample();
             Console.WriteLine(count);
+
+            ShowSql(listener);
+        }
+
+        private static void ShowSql(ExampleTraceListener listener)
+        {
+            Console.WriteLine("--------");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("SQL Sent to database was:");
+            Console.WriteLine(listener.Output);
+            Console.ResetColor();
         }
     }
 }
