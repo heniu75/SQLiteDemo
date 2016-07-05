@@ -33,12 +33,18 @@ namespace SharedLib.Data.Simple
             return customers;
         }
 
+        public int GetCountBySample()
+        {
+            var db = Database.Opener.OpenFile(GetConnectionString());
+            var count = db.Customer.GetCountByFirstName("Sergey1");
+            return count;
+        }
+
         public void SaveCustomer(Customer customer)
         {
             if (!File.Exists(DbFile))
-            {
                 CreateDatabase();
-            }
+
             var db = Database.Opener.OpenFile(GetConnectionString());
             var result = db.Customer.Insert(customer);
             customer.Id = result.Id;

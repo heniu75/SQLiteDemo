@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SharedLib.Data;
-using SharedLib.Data.Peta;
 using SharedLib.Data.Simple;
 using SharedLib.Model;
 
@@ -15,7 +10,7 @@ namespace SQLiteDemo.UsingSimpleData
         static void Main(string[] args)
         {
             Console.WriteLine("SIMPLE DATA DEMO WITH SQLLITE");
-            ICustomerRepository rep = new SimpleDataCustomerRepository();
+            var rep = new SimpleDataCustomerRepository();
             var customer = new Customer
             {
                 FirstName = "Sergey",
@@ -30,7 +25,8 @@ namespace SQLiteDemo.UsingSimpleData
             var customers = rep.GetAllCustomers();
             foreach (var cust in customers)
                 Console.WriteLine("customer: {0}, {1}, {2}, {3}", cust.Id, cust.FirstName, cust.LastName, cust.DateOfBirth);
-
+            var count = rep.GetCountBySample();
+            Console.WriteLine(count);
         }
     }
 }
